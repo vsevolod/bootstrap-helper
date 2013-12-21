@@ -12,18 +12,18 @@ module BootstrapHelper
       content_tag("title", title, nil, false)
     end
 
-    def render_body_tag
+    def render_body_tag(&block)
       class_attribute = ["#{controller_name}-controller","#{action_name}-action"].join(" ")
       id_attribute = (@body_id)? " id=\"#{@body_id}-page\"" : ""
-
-      raw(%Q|<!--[if lt IE 7 ]>
+      result = %Q|<!--[if lt IE 7 ]>
         <body class="#{class_attribute} ie6"><![endif]-->
         <!--[if gte IE 7 ]>
         <body class="#{class_attribute} ie"><![endif]-->
         <!--[if !IE]>-->
         <body#{id_attribute} class="#{class_attribute}">
-        <!--<![endif]-->|)
-
+        <!--<![endif]-->|
+      result += block.call + '</body>' if block
+      raw result
     end
 
 

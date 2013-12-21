@@ -5,7 +5,7 @@
   <%= csrf_meta_tag %>
   <%= stylesheet_link_tag "application"%>
 </head>
-<%= render_body_tag %>
+<%= render_body_tag do %>
   <div class="topbar" data-dropdown="dropdown">
     <div class="topbar-inner">
       <div class="container">
@@ -43,5 +43,5 @@
   <%= render :partial => "common/facebook_js" %>
   <%= render :partial => "common/google_analytics"%>
  
-</body>
+<% end -%>
 </html>
