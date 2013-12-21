@@ -6,3 +6,4 @@ gemspec
 
 
 gem "simple_form", "3.0.1"
+gem 'jquery-rails', "~> 3.0.4"
