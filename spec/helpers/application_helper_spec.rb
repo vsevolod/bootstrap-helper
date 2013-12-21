@@ -30,15 +30,16 @@ describe ApplicationHelper do
 
 
   describe "notice_message" do
+    let(:message){'Update Success!'}
 
     it "should return flash message" do
-      stub!(:flash).and_return({:warning => "Update Success!"})
-      notice_message.should == "<div class=\"alert fade in alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">x</a>Update Success!</div>"
+      stub!(:flash).and_return({:warning => message})
+      notice_message.should have_selector(%Q(div[class="alert fade in alert-warning"]), text: message)
     end
 
     it "should return alert-success message when use notice message" do
-      stub!(:flash).and_return({:notice => "Update Success!"})
-      notice_message.should == "<div class=\"alert fade in alert-success\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">x</a>Update Success!</div>"
+      stub!(:flash).and_return({:notice => message})
+      notice_message.should have_selector(%Q(div[class="alert fade in alert-success"]), text: message)
     end
 
   end
